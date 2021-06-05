@@ -20,7 +20,7 @@ int Mcpxxxx::clear_settings() {
     return 0;
 }
 
-int Mcpxxxx::begin() {
+int Mcpxxxx::begin(uint8_t directions[]) {
     int rc;
 
     if (!this->is_open()) {
@@ -33,6 +33,16 @@ int Mcpxxxx::begin() {
     if (rc) {
         std::cerr << "Error clearing settings\n";
         return rc;
+    }
+
+    for (int i = 0; i < MCP_NUM_PINS; i++)
+        this->set_dir(i, directions[i]);
+    
+    for (int i = 0; i < MCP_NUM_PINS; i++) {
+        if (this->get_dir(i) != directions[i]) {
+            std::cerr << "Error setting direction of pin " << i << "\n";
+            return -EIO;
+        }
     }
     return 0;
 }

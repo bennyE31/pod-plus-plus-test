@@ -3,11 +3,23 @@
 #include "mcpxxxx.h"
 
 int main() {
-    Mcpxxxx rick = Mcpxxxx(0, 0x54);
-    Mcpxxxx morty = Mcpxxxx(1, 0x45);
+    uint8_t rick_directions[16] = 
+    {
+        1, 0, 1, 1, 1, 1, 0, 0,
+        0, 1, 1, 1, 1, 1, 1, 1
+    };
 
-    morty.begin();
-    rick.begin();
+    uint8_t morty_directions[16] =
+    {
+        0, 0, 0, 0, 1, 1, 1, 1,
+        1, 1, 0, 0, 1, 0, 1, 1
+    };
+
+    Mcpxxxx rick = Mcpxxxx(2, 0x20);
+    Mcpxxxx morty = Mcpxxxx(2, 0x21);
+
+    morty.begin(morty_directions);
+    rick.begin(rick_directions);
 
     std::cout << rick.get_state(0) << "\n";
     morty.set_state(8, 1);

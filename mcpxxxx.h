@@ -17,7 +17,7 @@ class Mcpxxxx: private I2c {
         uint8_t get_dir(int pin);
     public:
         Mcpxxxx(int bus, int addr);
-        int begin();
+        int begin(uint8_t directions[]);
         uint8_t get_state(int pin);
         int set_state(int pin, uint8_t val);
 };
