@@ -21,9 +21,7 @@ int main() {
     morty.begin(morty_directions);
     rick.begin(rick_directions);
 
-    std::cout << rick.get_state(0) << "\n";
-    morty.set_state(8, 1);
-    std::cout << rick.get_state(8) << "\n";
+    /* Set some pin states or something idk */
 
     return 0;
 }

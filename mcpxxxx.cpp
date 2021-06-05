@@ -125,15 +125,22 @@ uint8_t Mcpxxxx::get_state(int pin) {
 
 int Mcpxxxx::set_state(int pin, uint8_t dir) {
     uint8_t current_status;
+    uint8_t current_dir;
     uint8_t stateReg;
+    uint8_t dirReg;
     int rc;
 
     if (pin >= MCP_NUM_PINS)
         return -EINVAL;
 
     stateReg = getGpioBank(pin);
+    dirReg = getDirBank(pin);
     pin = getRelativePin(pin);
 
+    current_dir = this->read_from_addr(dirReg);
+
+    if (current_dir)
+        return -EINVAL;
     current_status = this->read_from_addr(stateReg);
 
     if (dir)
