@@ -16,12 +16,19 @@ int main() {
     };
 
     Mcpxxxx rick = Mcpxxxx(2, 0x20);
-    Mcpxxxx morty = Mcpxxxx(2, 0x21);
-
-    morty.begin(morty_directions);
     rick.begin(rick_directions);
 
-    /* Set some pin states or something idk */
+    rick.set_state(1, 0);
+    std::cout << (int)rick.get_state(1) << std::endl;
+    rick.set_state(1, 1);
+    std::cout << (int)rick.get_state(1) << std::endl;
+
+    rick.set_state(8, 0);
+    std::cout << (int)rick.get_state(8) << std::endl;
+    rick.set_state(8, 1);
+    std::cout << (int)rick.get_state(8) << std::endl;
+
+    /* Set some more pin states or something idk */
 
     return 0;
 }

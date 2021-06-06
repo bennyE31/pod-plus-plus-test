@@ -11,6 +11,7 @@ I2c::I2c(int bus, int addr, int mode) {
     this->bus = bus;
     this->deviceAddress = addr;
     this->openMode = mode;
+    this->fd = -1; /* This allows is_open() to function at init */
 }
 
 I2c::~I2c() {
